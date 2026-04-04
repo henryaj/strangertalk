@@ -6,19 +6,29 @@ import { AppState } from '@/lib/types';
 import { scoreGeneralSurvey, scoreDailySurvey, CompositeScores } from '@/lib/scoring';
 import { buildMailtoLink, formatResultsText, exportJSON } from '@/lib/export';
 
-function ScoreRow({ label, baseline, end, followup }: {
+function ScoreRow({ label, baseline, end, followup, lowerIsBetter }: {
   label: string;
   baseline: number | undefined;
   end: number | undefined;
   followup: number | undefined;
+  lowerIsBetter: boolean;
 }) {
   const fmt = (n: number | undefined) => n !== undefined ? n.toFixed(2) : '—';
-  const delta = (a: number | undefined, b: number | undefined) => {
+  const deltaVal = (a: number | undefined, b: number | undefined) => {
     if (a === undefined || b === undefined) return null;
-    const d = b - a;
+    return b - a;
+  };
+  const deltaStr = (d: number) => {
     const sign = d > 0 ? '+' : '';
     return `${sign}${d.toFixed(2)}`;
   };
+
+  const d = deltaVal(baseline, end);
+  let colorClass = 'text-white/50';
+  if (d !== null && d !== 0) {
+    const isGood = lowerIsBetter ? d < 0 : d > 0;
+    colorClass = isGood ? 'text-neon-green' : 'text-neon-pink';
+  }
 
   return (
     <tr className="border-b border-white/10">
@@ -27,11 +37,7 @@ function ScoreRow({ label, baseline, end, followup }: {
       <td className="py-2 text-center text-sm text-white/80">{fmt(end)}</td>
       <td className="py-2 text-center text-sm text-white/80">{fmt(followup)}</td>
       <td className="py-2 text-center text-sm font-bold">
-        {delta(baseline, end) && (
-          <span className={Number(delta(baseline, end)) < 0 ? 'text-neon-green' : Number(delta(baseline, end)) > 0 ? 'text-neon-pink' : 'text-white/50'}>
-            {delta(baseline, end)}
-          </span>
-        )}
+        {d !== null && <span className={colorClass}>{deltaStr(d)}</span>}
       </td>
     </tr>
   );
@@ -111,6 +117,7 @@ export default function ResultsPage() {
                 baseline={baseline?.[m.key] as number | undefined}
                 end={end?.[m.key] as number | undefined}
                 followup={followup?.[m.key] as number | undefined}
+                lowerIsBetter={m.lowerIsBetter}
               />
             ))}
           </tbody>
