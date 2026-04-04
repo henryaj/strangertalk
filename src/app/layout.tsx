@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <div className="marquee-container bg-neon-pink text-black text-xs font-bold py-1">
           <div className="animate-marquee inline-block">
-            ★ TALK TO STRANGERS ★ IT&apos;S NOT AS SCARY AS YOU THINK ★ 87% OF PEOPLE TALKED TO THE FIRST PERSON THEY APPROACHED ★ YOUR FEARS ARE EXAGGERATED ★ CONVERSATIONS GO BETTER THAN YOU PREDICT ★ TALK TO STRANGERS ★
+            ★ TALK TO A STRANGER TODAY ★ FIND SOMEONE WEARING INTERESTING SHOES ★ FIND SOMEONE DRINKING COFFEE ★ FIND SOMEONE WHO LOOKS HAPPY ★ WILD CARD: TALK TO ANYONE ★ FIND SOMEONE WITH A TATTOO ★ EVERY CONVERSATION COUNTS ★
           </div>
         </div>
         <main className="flex-1 px-4 py-8">{children}</main>

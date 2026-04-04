@@ -26,10 +26,8 @@ export default function Home() {
         A challenge to talk to strangers!!!
       </p>
       <p className="text-neon-green text-sm mb-8 leading-relaxed">
-        Research shows we&apos;re far too pessimistic about talking to strangers &mdash;
-        they&apos;re more willing to chat than we think, and conversations go better
-        than we predict. This app guides you through missions to
-        prove it to yourself. 🚀
+        This app gives you missions to go talk to strangers
+        and tracks how you feel about it. 🚀
       </p>
 
       <div className="neon-box rounded-xl p-6 mb-8 text-left bg-void/80">
@@ -68,12 +66,23 @@ export default function Home() {
         </div>
       )}
 
-      <p className="text-xs text-neon-pink/60 mt-8">
-        Based on <a href="https://www.sciencedirect.com/science/article/pii/S0022103122000750" target="_blank" rel="noopener noreferrer" className="underline hover:text-neon-pink">Sandstrom, Boothby &amp; Cooney (2022)</a>.
-        Your data stays on this device. 🔒
-      </p>
+      <details className="text-left mt-8 neon-box rounded-xl p-4 bg-void/60">
+        <summary className="text-xs text-neon-pink/80 cursor-pointer hover:text-neon-pink font-bold">
+          🔬 About the research behind this (contains spoilers)
+        </summary>
+        <p className="text-xs text-white/60 mt-3 leading-relaxed">
+          This app is based on <a href="https://www.sciencedirect.com/science/article/pii/S0022103122000750" target="_blank" rel="noopener noreferrer" className="underline text-neon-cyan hover:text-neon-cyan/80">Sandstrom, Boothby &amp; Cooney (2022)</a>,
+          who found that people are remarkably pessimistic about talking to strangers &mdash;
+          they overestimate rejection, underestimate their conversational ability, and
+          expect conversations to go worse than they actually do.
+          A week-long scavenger hunt intervention reduced these fears, and the benefits
+          persisted for at least a week after the study ended.
+        </p>
+      </details>
 
-      <div className="mt-4 text-2xl animate-spin-slow inline-block">🌀</div>
+      <p className="text-xs text-white/30 mt-4">Your data stays on this device. 🔒</p>
+
+      <div className="mt-2 text-2xl animate-spin-slow inline-block">🌀</div>
     </div>
   );
 }
