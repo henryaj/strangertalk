@@ -17,7 +17,6 @@ export default function MissionPage({ params }: { params: Promise<{ n: string }>
   useEffect(() => {
     const state = loadState();
     setCompletedIds(state.completedMissionIds);
-    // If they already picked a mission for this day, pre-select it
     const dayMission = state.days[dayNum - 1].missionId;
     if (dayMission) {
       setSelectedId(dayMission);
@@ -46,20 +45,22 @@ export default function MissionPage({ params }: { params: Promise<{ n: string }>
   if (accepted && selectedMission) {
     return (
       <div className="max-w-xl mx-auto text-center mt-12">
-        <h1 className="text-2xl font-bold mb-2">Day {dayNum} Mission</h1>
-        <div className="bg-indigo-50 rounded-xl p-8 mb-8 animate-slow-pulse">
-          <h2 className="text-xl font-bold text-indigo-900 mb-3">{selectedMission.name}</h2>
-          <p className="text-indigo-800 leading-relaxed">{selectedMission.instruction}</p>
+        <h1 className="text-2xl font-bold mb-4 animate-glitch text-neon-yellow">
+          🎯 Day {dayNum} Mission 🎯
+        </h1>
+        <div className="neon-box rounded-xl p-8 mb-8 animate-slow-pulse bg-neon-pink/10">
+          <h2 className="text-xl font-bold text-neon-pink mb-3">{selectedMission.name}</h2>
+          <p className="text-white/80 leading-relaxed">{selectedMission.instruction}</p>
         </div>
-        <p className="text-gray-500 mb-8 text-sm">
+        <p className="text-white/50 mb-8 text-sm">
           Go find this person and have a conversation. It doesn&apos;t need to be long &mdash;
-          even a few minutes counts. When you&apos;re done, come back and tell us how it went.
+          even a few minutes counts. When you&apos;re done, come back and tell us how it went. 🗣️
         </p>
         <button
           onClick={handleDone}
-          className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+          className="w-full py-3 px-6 rounded-xl font-bold neon-btn text-lg"
         >
-          I did it! Log my experience
+          ✅ I did it! Log my experience
         </button>
       </div>
     );
@@ -67,8 +68,8 @@ export default function MissionPage({ params }: { params: Promise<{ n: string }>
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-2">Day {dayNum} — Pick a mission</h1>
-      <p className="text-gray-600 mb-6">Choose a mission below. Find the person described, then talk to them for a few minutes.</p>
+      <h1 className="text-2xl font-bold mb-2 text-neon-cyan">Day {dayNum} &mdash; Pick a mission</h1>
+      <p className="text-white/60 mb-6 text-sm">Choose a mission below. Find the person described, then talk to them for a few minutes. 🔍</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
         {missions.map((m) => (
@@ -86,9 +87,9 @@ export default function MissionPage({ params }: { params: Promise<{ n: string }>
         <div className="sticky bottom-4">
           <button
             onClick={handleAccept}
-            className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-lg"
+            className="w-full py-3 px-6 rounded-xl font-bold neon-btn text-lg shadow-[0_0_30px_rgba(255,0,255,0.5)]"
           >
-            Accept this mission
+            🚀 Accept this mission
           </button>
         </div>
       )}

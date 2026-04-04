@@ -8,11 +8,11 @@ import DayCard from '@/components/DayCard';
 import ProgressBar from '@/components/ProgressBar';
 
 const encouragements = [
-  "You've got this! Every conversation gets easier.",
-  "Remember: 87% of people in the study talked to the very first person they approached.",
-  "Strangers are friendlier than you think.",
-  "The hardest part is starting. You've already done that.",
-  "Each conversation is making your predictions more accurate.",
+  "💪 You've got this! Every conversation gets easier.",
+  "🤯 87% of people in the study talked to the FIRST person they approached.",
+  "🤝 Strangers are friendlier than you think!!!",
+  "🚀 The hardest part is starting. You've already done that.",
+  "📈 Each conversation makes your predictions more accurate.",
 ];
 
 export default function DashboardPage() {
@@ -45,16 +45,18 @@ export default function DashboardPage() {
   return (
     <div className="max-w-xl mx-auto">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">StrangerTalk</h1>
-        <span className="text-sm font-medium text-indigo-600">{state.points} pts</span>
+        <h1 className="text-2xl font-bold animate-glitch">
+          <span className="rainbow-text">StrangerTalk</span>
+        </h1>
+        <span className="text-sm font-bold text-neon-yellow">⭐ {state.points} pts</span>
       </div>
 
       <div className="mb-6 space-y-3">
-        <ProgressBar current={daysCompleted} total={totalDays} label={isOneDay ? 'Mission' : 'Days completed'} />
-        <ProgressBar current={state.completedMissionIds.length} total={29} label="Missions tried" />
+        <ProgressBar current={daysCompleted} total={totalDays} label={isOneDay ? '🎯 Mission' : '📅 Days completed'} />
+        <ProgressBar current={state.completedMissionIds.length} total={29} label="🗺️ Missions tried" />
       </div>
 
-      <div className="bg-indigo-50 rounded-xl p-4 mb-6 text-sm text-indigo-800">
+      <div className="neon-box-cyan rounded-xl p-4 mb-6 text-sm text-neon-cyan bg-neon-cyan/5 animate-wiggle">
         {encouragements[Math.min(daysCompleted, encouragements.length - 1)]}
       </div>
 
@@ -90,57 +92,56 @@ export default function DashboardPage() {
       </div>
 
       {allDaysDone && !endSurveyDone && (
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
-          <h2 className="font-bold mb-2">
-            {isOneDay ? 'Mission complete!' : 'All 5 days complete!'}
+        <div className="neon-box rounded-xl p-6 text-center bg-void/60 animate-slow-pulse">
+          <h2 className="font-bold mb-2 text-neon-yellow text-lg">
+            {isOneDay ? '🎉 Mission complete!' : '🎉 All 5 days complete!'}
           </h2>
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="text-sm text-white/70 mb-4">
             {isOneDay
               ? "Let's see how your feelings compare to before."
               : 'Time for your end-of-study survey.'}
           </p>
           <button
             onClick={() => router.push('/final')}
-            className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+            className="px-6 py-2 neon-btn rounded-lg font-bold"
           >
-            Take end survey
+            Take end survey ▶
           </button>
         </div>
       )}
 
       {endSurveyDone && !followupDone && !isOneDay && (
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
-          <h2 className="font-bold mb-2">Follow-up survey</h2>
+        <div className="neon-box-yellow rounded-xl p-6 text-center bg-void/60">
+          <h2 className="font-bold mb-2 text-neon-yellow">⏰ Follow-up survey</h2>
           {daysSinceEnd >= 7 ? (
             <>
-              <p className="text-sm text-gray-600 mb-4">It&apos;s been a week! Take your follow-up survey to see how your attitudes have held up.</p>
+              <p className="text-sm text-white/70 mb-4">It&apos;s been a week! Time to check in. 🔍</p>
               <button
                 onClick={() => router.push('/followup')}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                className="px-6 py-2 neon-btn rounded-lg font-bold"
               >
-                Take follow-up survey
+                Take follow-up survey ▶
               </button>
             </>
           ) : (
-            <p className="text-sm text-gray-600">
-              Come back in {7 - daysSinceEnd} day{7 - daysSinceEnd !== 1 ? 's' : ''} for your follow-up survey.
-              The research shows waiting a week gives the best signal on lasting change.
+            <p className="text-sm text-neon-yellow/70">
+              Come back in {7 - daysSinceEnd} day{7 - daysSinceEnd !== 1 ? 's' : ''}. ⏳
             </p>
           )}
         </div>
       )}
 
       {(followupDone || (endSurveyDone && isOneDay)) && (
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
-          <h2 className="font-bold mb-2">
-            {isOneDay ? 'Done!' : 'Challenge complete!'}
+        <div className="neon-box-green rounded-xl p-6 text-center bg-void/60">
+          <h2 className="font-bold mb-2 text-neon-green text-lg">
+            {isOneDay ? '✨ Done! ✨' : '🏆 Challenge complete! 🏆'}
           </h2>
-          <p className="text-sm text-gray-600 mb-4">View your results and see how your attitudes changed.</p>
+          <p className="text-sm text-white/70 mb-4">View your results and see how your attitudes changed.</p>
           <button
             onClick={() => router.push('/results')}
-            className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+            className="px-6 py-2 neon-btn rounded-lg font-bold"
           >
-            View results
+            View results 📊
           </button>
         </div>
       )}
@@ -148,23 +149,23 @@ export default function DashboardPage() {
       <div className="mt-12 text-center">
         <button
           onClick={() => setShowResetModal(true)}
-          className="text-xs text-gray-400 hover:text-red-500 transition-colors"
+          className="text-xs text-white/20 hover:text-red-400 transition-colors"
         >
-          Reset all data
+          💀 Reset all data
         </button>
       </div>
 
       {showResetModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl">
-            <h2 className="font-bold text-lg mb-2">Reset all data?</h2>
-            <p className="text-sm text-gray-600 mb-6">
-              This will permanently delete all your surveys, missions, and progress. This cannot be undone.
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="neon-box rounded-xl p-6 max-w-sm w-full bg-void">
+            <h2 className="font-bold text-lg mb-2 text-neon-pink">⚠️ RESET ALL DATA? ⚠️</h2>
+            <p className="text-sm text-white/70 mb-6">
+              This will permanently delete all your surveys, missions, and progress. This cannot be undone. 💀
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowResetModal(false)}
-                className="flex-1 py-2 px-4 rounded-lg border border-gray-200 text-sm font-medium hover:bg-gray-50 transition-colors"
+                className="flex-1 py-2 px-4 rounded-lg neon-btn-secondary text-sm font-bold"
               >
                 Cancel
               </button>
@@ -173,7 +174,7 @@ export default function DashboardPage() {
                   resetState();
                   router.push('/');
                 }}
-                className="flex-1 py-2 px-4 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors"
+                className="flex-1 py-2 px-4 rounded-lg neon-btn-danger text-sm font-bold"
               >
                 Delete everything
               </button>

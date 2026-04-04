@@ -15,39 +15,50 @@ export default function DayCard({ day, isActive, isLocked, totalDays, onStart, o
   const isDone = day.postSurvey !== null;
   const inProgress = day.preSurvey !== null && !isDone;
 
-  let status: string;
+  let boxClass: string;
+  let statusText: string;
   let statusColor: string;
+  let emoji: string;
+
   if (isDone) {
-    status = 'Complete';
-    statusColor = 'text-green-600';
+    boxClass = 'neon-box-green';
+    statusText = 'COMPLETE';
+    statusColor = 'text-neon-green';
+    emoji = '🏆';
   } else if (inProgress) {
-    status = 'In progress';
-    statusColor = 'text-amber-600';
+    boxClass = 'neon-box-yellow';
+    statusText = 'IN PROGRESS';
+    statusColor = 'text-neon-yellow';
+    emoji = '⏳';
   } else if (isActive) {
-    status = 'Ready';
-    statusColor = 'text-indigo-600';
+    boxClass = 'neon-box animate-slow-pulse';
+    statusText = 'READY';
+    statusColor = 'text-neon-pink';
+    emoji = '🎯';
   } else if (isLocked) {
-    status = 'Locked';
-    statusColor = 'text-gray-400';
+    boxClass = 'border-2 border-white/10 opacity-40';
+    statusText = 'LOCKED';
+    statusColor = 'text-white/40';
+    emoji = '🔒';
   } else {
-    status = 'Up next';
-    statusColor = 'text-gray-500';
+    boxClass = 'border-2 border-white/20';
+    statusText = 'UP NEXT';
+    statusColor = 'text-white/50';
+    emoji = '👀';
   }
 
   return (
-    <div
-      className={`p-4 rounded-xl border-2 ${
-        isActive ? 'border-indigo-600 bg-indigo-50' : isDone ? 'border-green-200 bg-green-50' : 'border-gray-200'
-      }`}
-    >
+    <div className={`p-4 rounded-xl bg-void/60 ${boxClass}`}>
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-bold">{totalDays === 1 ? 'Your mission' : `Day ${day.dayNumber}`}</h3>
-          <p className={`text-sm ${statusColor}`}>
-            {status}
+          <h3 className="font-bold text-white">
+            {emoji} {totalDays === 1 ? 'Your mission' : `Day ${day.dayNumber}`}
+          </h3>
+          <p className={`text-sm font-bold ${statusColor}`}>
+            {statusText}
             {isDone && day.extraMissions.length > 0 && (
-              <span className="text-gray-400 ml-1">
-                + {day.extraMissions.length} bonus
+              <span className="text-neon-cyan ml-1">
+                + {day.extraMissions.length} bonus 🌟
               </span>
             )}
           </p>
@@ -55,9 +66,9 @@ export default function DayCard({ day, isActive, isLocked, totalDays, onStart, o
         {(isActive || inProgress) && !isDone && (
           <button
             onClick={onStart}
-            className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+            className="px-4 py-2 neon-btn text-sm font-bold rounded-lg"
           >
-            {inProgress ? 'Continue' : 'Start'}
+            {inProgress ? '▶ Continue' : '▶ Start'}
           </button>
         )}
         {isDone && (
@@ -65,12 +76,11 @@ export default function DayCard({ day, isActive, isLocked, totalDays, onStart, o
             {onBonusMission && (
               <button
                 onClick={onBonusMission}
-                className="px-3 py-1.5 text-xs font-medium text-indigo-600 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors"
+                className="px-3 py-1.5 text-xs font-bold neon-btn-secondary rounded-lg"
               >
-                + Another
+                + Another ⚡
               </button>
             )}
-            <span className="text-2xl">&#10003;</span>
           </div>
         )}
       </div>

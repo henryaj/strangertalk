@@ -21,14 +21,14 @@ function ScoreRow({ label, baseline, end, followup }: {
   };
 
   return (
-    <tr className="border-b border-gray-100">
-      <td className="py-2 font-medium text-sm">{label}</td>
-      <td className="py-2 text-center text-sm">{fmt(baseline)}</td>
-      <td className="py-2 text-center text-sm">{fmt(end)}</td>
-      <td className="py-2 text-center text-sm">{fmt(followup)}</td>
-      <td className="py-2 text-center text-sm font-medium">
+    <tr className="border-b border-white/10">
+      <td className="py-2 font-bold text-sm text-neon-cyan">{label}</td>
+      <td className="py-2 text-center text-sm text-white/80">{fmt(baseline)}</td>
+      <td className="py-2 text-center text-sm text-white/80">{fmt(end)}</td>
+      <td className="py-2 text-center text-sm text-white/80">{fmt(followup)}</td>
+      <td className="py-2 text-center text-sm font-bold">
         {delta(baseline, end) && (
-          <span className={Number(delta(baseline, end)) < 0 ? 'text-green-600' : Number(delta(baseline, end)) > 0 ? 'text-red-600' : ''}>
+          <span className={Number(delta(baseline, end)) < 0 ? 'text-neon-green' : Number(delta(baseline, end)) > 0 ? 'text-neon-pink' : 'text-white/50'}>
             {delta(baseline, end)}
           </span>
         )}
@@ -85,20 +85,22 @@ export default function ResultsPage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-2">Your Results</h1>
-      <p className="text-gray-600 mb-8">Here&apos;s how your attitudes changed over the course of the challenge.</p>
+      <h1 className="text-2xl font-bold mb-2 animate-glitch">
+        <span className="rainbow-text">📊 Your Results 📊</span>
+      </h1>
+      <p className="text-white/60 mb-8 text-sm">Here&apos;s how your attitudes changed over the course of the challenge. 🔬</p>
 
       {/* General survey comparison */}
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6 overflow-x-auto">
-        <h2 className="font-bold mb-4">General survey scores</h2>
+      <div className="neon-box rounded-xl p-6 mb-6 overflow-x-auto bg-void/60">
+        <h2 className="font-bold mb-4 text-neon-yellow">⚡ Survey scores</h2>
         <table className="w-full text-left">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="py-2 text-sm font-semibold">Measure</th>
-              <th className="py-2 text-center text-sm font-semibold">Baseline</th>
-              <th className="py-2 text-center text-sm font-semibold">End</th>
-              <th className="py-2 text-center text-sm font-semibold">Follow-up</th>
-              <th className="py-2 text-center text-sm font-semibold">Change</th>
+            <tr className="border-b border-neon-pink/30">
+              <th className="py-2 text-sm font-bold text-neon-pink">Measure</th>
+              <th className="py-2 text-center text-sm font-bold text-neon-pink">Baseline</th>
+              <th className="py-2 text-center text-sm font-bold text-neon-pink">End</th>
+              <th className="py-2 text-center text-sm font-bold text-neon-pink">Follow-up</th>
+              <th className="py-2 text-center text-sm font-bold text-neon-pink">Change</th>
             </tr>
           </thead>
           <tbody>
@@ -117,21 +119,21 @@ export default function ResultsPage() {
 
       {/* Daily predictions vs reality */}
       {dailyData.length > 0 && (
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
-          <h2 className="font-bold mb-4">Daily: Predictions vs. Reality</h2>
+        <div className="neon-box-cyan rounded-xl p-6 mb-6 bg-void/60">
+          <h2 className="font-bold mb-4 text-neon-cyan">🔮 Predictions vs. Reality</h2>
           <div className="space-y-4">
             {dailyData.map(({ day, predicted, actual }) => (
-              <div key={day} className="border-b border-gray-100 pb-3 last:border-0">
-                <h3 className="font-medium text-sm mb-2">Day {day}</h3>
+              <div key={day} className="border-b border-white/10 pb-3 last:border-0">
+                <h3 className="font-bold text-sm mb-2 text-neon-yellow">Day {day}</h3>
                 <div className="grid grid-cols-3 gap-2 text-xs">
-                  <div className="font-semibold">Measure</div>
-                  <div className="font-semibold text-center">Predicted</div>
-                  <div className="font-semibold text-center">Actual</div>
+                  <div className="font-bold text-neon-pink">Measure</div>
+                  <div className="font-bold text-center text-neon-pink">Predicted</div>
+                  <div className="font-bold text-center text-neon-pink">Actual</div>
                   {measures.map((m) => (
                     <React.Fragment key={m.key}>
-                      <div className="text-gray-600">{m.label}</div>
-                      <div className="text-center">{((predicted as unknown as Record<string, number>)[m.key])?.toFixed(2) ?? '—'}</div>
-                      <div className="text-center">{((actual as unknown as Record<string, number>)[m.key])?.toFixed(2) ?? '—'}</div>
+                      <div className="text-white/60">{m.label}</div>
+                      <div className="text-center text-white/80">{((predicted as unknown as Record<string, number>)[m.key])?.toFixed(2) ?? '—'}</div>
+                      <div className="text-center text-neon-green">{((actual as unknown as Record<string, number>)[m.key])?.toFixed(2) ?? '—'}</div>
                     </React.Fragment>
                   ))}
                 </div>
@@ -142,30 +144,29 @@ export default function ResultsPage() {
       )}
 
       {/* Export options */}
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-8">
-        <h2 className="font-bold mb-4">Export your data</h2>
+      <div className="neon-box-yellow rounded-xl p-6 mb-8 bg-void/60">
+        <h2 className="font-bold mb-4 text-neon-yellow">💾 Export your data</h2>
         <div className="space-y-3">
           <a
             href={buildMailtoLink(state)}
-            className="block w-full py-3 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors text-center"
+            className="block w-full py-3 px-6 rounded-xl font-bold neon-btn text-center"
           >
-            Email results to henry@henrystanley.com
+            📧 Email results
           </a>
           <button
             onClick={handleCopy}
-            className="w-full py-3 px-6 rounded-xl font-semibold border-2 border-gray-200 hover:border-gray-300 transition-colors"
+            className="w-full py-3 px-6 rounded-xl font-bold neon-btn-secondary"
           >
-            {copied ? 'Copied!' : 'Copy results to clipboard'}
+            {copied ? '✅ Copied!' : '📋 Copy to clipboard'}
           </button>
           <button
             onClick={handleDownload}
-            className="w-full py-3 px-6 rounded-xl font-semibold border-2 border-gray-200 hover:border-gray-300 transition-colors"
+            className="w-full py-3 px-6 rounded-xl font-bold neon-btn-secondary"
           >
-            Download as JSON
+            ⬇️ Download JSON
           </button>
         </div>
       </div>
     </div>
   );
 }
-

@@ -8,15 +8,15 @@ import { loadState, saveState } from '@/lib/storage';
 import { DailySurvey } from '@/lib/types';
 
 const postMessages = [
-  "Great job! You did it. That's one conversation down.",
-  "Two days in! You're building momentum.",
-  "Halfway there. Notice how your predictions compare to reality?",
-  "Four days done. You're practically a pro at this.",
-  "Five for five! You've completed the challenge. Amazing work.",
+  "🎉 Great job! You did it. That's one conversation down.",
+  "🔥 Two days in! You're building momentum.",
+  "⚡ Halfway there. Notice how your predictions compare to reality?",
+  "💪 Four days done. You're practically a pro at this.",
+  "🏆 Five for five! You've completed the challenge. Amazing work.",
 ];
 
 function getMessage(dayNum: number, totalDays: number): string {
-  if (totalDays === 1) return "Nice work! You talked to a stranger. Let's see how it compared to your expectations.";
+  if (totalDays === 1) return "✨ Nice work! You talked to a stranger. Let's see how it compared to your expectations.";
   return postMessages[Math.min(dayNum - 1, postMessages.length - 1)];
 }
 
@@ -48,7 +48,7 @@ export default function PostSurveyPage({ params }: { params: Promise<{ n: string
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto mb-6 bg-green-50 rounded-xl p-4 text-sm text-green-800">
+      <div className="max-w-2xl mx-auto mb-6 neon-box-green rounded-xl p-4 text-sm text-neon-green bg-neon-green/5 animate-wiggle">
         {getMessage(dayNum, totalDays)}
       </div>
       <SurveyForm

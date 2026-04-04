@@ -34,14 +34,14 @@ export default function SurveyForm({
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-2">{title}</h1>
-      {description && <p className="text-gray-600 mb-8">{description}</p>}
+      <h1 className="text-2xl font-bold mb-2 animate-glitch">{title}</h1>
+      {description && <p className="text-neon-green/80 mb-8 text-sm">{description}</p>}
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {questions.map((q, i) => (
-          <div key={q.id} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <p className="font-medium mb-4">
-              <span className="text-gray-400 mr-2">{i + 1}.</span>
+          <div key={q.id} className="neon-box rounded-xl p-6 bg-void/60">
+            <p className="font-bold mb-4 text-white">
+              <span className="text-neon-pink mr-2">[{i + 1}]</span>
               {q.text}
             </p>
             {q.type === 'likert' ? (
@@ -65,13 +65,15 @@ export default function SurveyForm({
         <button
           onClick={handleSubmit}
           disabled={!allAnswered}
-          className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+          className={`w-full py-3 px-6 rounded-xl font-bold text-lg ${
+            allAnswered ? 'neon-btn' : 'bg-white/10 text-white/30 cursor-not-allowed'
+          }`}
         >
           {submitLabel}
         </button>
         {!allAnswered && (
-          <p className="text-sm text-gray-500 mt-2 text-center">
-            Please answer all questions to continue.
+          <p className="text-sm text-neon-yellow/60 mt-2 text-center animate-wiggle">
+            ⚠️ answer all questions to continue ⚠️
           </p>
         )}
       </div>

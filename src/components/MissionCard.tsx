@@ -14,19 +14,21 @@ export default function MissionCard({ mission, completed, selected, onSelect }: 
     <button
       onClick={onSelect}
       disabled={completed}
-      className={`text-left p-4 rounded-xl border-2 transition-all ${
+      className={`text-left p-4 rounded-xl transition-all ${
         completed
-          ? 'border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed'
+          ? 'neon-box-green opacity-30 cursor-not-allowed'
           : selected
-          ? 'border-indigo-600 bg-indigo-50'
-          : 'border-gray-200 bg-white hover:border-indigo-300'
+          ? 'neon-box bg-neon-pink/10 scale-105'
+          : 'border-2 border-white/20 bg-white/5 hover:border-neon-cyan hover:bg-neon-cyan/5'
       }`}
     >
       <div className="flex items-center justify-between mb-1">
-        <span className="font-semibold text-sm">{mission.name}</span>
-        {completed && <span className="text-xs text-green-600">Done</span>}
+        <span className={`font-bold text-sm ${selected ? 'text-neon-pink' : completed ? 'text-neon-green' : 'text-neon-yellow'}`}>
+          {mission.name}
+        </span>
+        {completed && <span className="text-xs text-neon-green">✅</span>}
       </div>
-      <p className="text-xs text-gray-600 leading-relaxed">{mission.instruction}</p>
+      <p className="text-xs text-white/60 leading-relaxed">{mission.instruction}</p>
     </button>
   );
 }

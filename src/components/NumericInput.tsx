@@ -11,7 +11,7 @@ export default function NumericInput({
   value,
   onChange,
   min = 0,
-  placeholder = 'Enter a number',
+  placeholder = '???',
 }: NumericInputProps) {
   return (
     <input
@@ -23,7 +23,7 @@ export default function NumericInput({
         if (!isNaN(v)) onChange(v);
       }}
       placeholder={placeholder}
-      className="w-32 px-3 py-2 border border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      className="w-32 px-3 py-2 bg-transparent border-2 border-neon-cyan rounded-lg text-center text-lg text-neon-cyan font-bold focus:outline-none focus:border-neon-pink focus:shadow-[0_0_15px_rgba(255,0,255,0.5)] placeholder-white/30"
     />
   );
 }
