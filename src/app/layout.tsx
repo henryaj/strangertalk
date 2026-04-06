@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,8 +34,9 @@ export default function RootLayout({
         </div>
         <main className="flex-1 px-4 py-8">{children}</main>
         <footer className="text-center text-xs text-neon-green py-4 opacity-60">
-          ┌( ᐛ )┘ made with mass hysteria ┌( ᐛ )┘
+          made with sarcasm by <a href="https://henrystanley.com" className="underline hover:text-neon-pink">Henry Stanley</a>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
