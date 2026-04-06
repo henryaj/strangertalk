@@ -21,6 +21,7 @@ export function getDefaultState(mode: AppMode = 'five-day'): AppState {
       extraMissions: [],
     })),
     completedMissionIds: [],
+    expressMissionIds: [],
     points: 0,
   };
 }

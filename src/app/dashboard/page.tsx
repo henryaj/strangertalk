@@ -51,6 +51,13 @@ export default function DashboardPage() {
         <span className="text-sm font-bold text-neon-yellow">⭐ {state.points} pts</span>
       </div>
 
+      <button
+        onClick={() => router.push('/express')}
+        className="w-full py-3 px-6 rounded-xl font-bold neon-btn text-lg mb-6 shadow-[0_0_20px_rgba(0,255,255,0.3)]"
+      >
+        Quick Mission
+      </button>
+
       <div className="mb-6 space-y-3">
         <ProgressBar current={daysCompleted} total={totalDays} label={isOneDay ? '🎯 Mission' : '📅 Days completed'} />
         <ProgressBar current={state.completedMissionIds.length} total={29} label="🗺️ Missions tried" />

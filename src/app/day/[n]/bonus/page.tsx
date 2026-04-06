@@ -107,9 +107,27 @@ export default function BonusMissionPage({ params }: { params: Promise<{ n: stri
           <h2 className="text-xl font-bold text-neon-pink mb-3">{selectedMission.name}</h2>
           <p className="text-white/80 leading-relaxed">{selectedMission.instruction}</p>
         </div>
-        <p className="text-white/50 mb-8 text-sm">
-          Go find this person and have a conversation. Come back when you&apos;re done. 🗣️
-        </p>
+        <div className="neon-box-cyan rounded-xl p-6 mb-8 text-left bg-neon-cyan/5">
+          <h3 className="text-sm font-bold text-neon-cyan mb-4">Not sure what to say? Try one of these:</h3>
+          <div className="space-y-3 text-sm text-white/80">
+            <p>
+              <span className="text-neon-cyan font-bold">Comment on the moment</span> &mdash;
+              &ldquo;Nice day, right?&rdquo; / &ldquo;This line is wild&rdquo; / &ldquo;Love this song&rdquo;
+            </p>
+            <p>
+              <span className="text-neon-cyan font-bold">Pay a compliment</span> &mdash;
+              &ldquo;Great shoes!&rdquo; / &ldquo;Cool tattoo&rdquo; / &ldquo;Your dog is adorable&rdquo;
+            </p>
+            <p>
+              <span className="text-neon-cyan font-bold">Ask something genuine</span> &mdash;
+              &ldquo;Know any good spots around here?&rdquo; / &ldquo;What are you reading?&rdquo;
+            </p>
+          </div>
+          <div className="mt-4 pt-3 border-t border-neon-cyan/20 text-xs text-white/50 space-y-1">
+            <p>Most conversations go better than you&apos;d predict.</p>
+            <p>You only need a few minutes &mdash; even 60 seconds counts.</p>
+          </div>
+        </div>
         <button
           onClick={() => setStep('post')}
           className="w-full py-3 px-6 rounded-xl font-bold neon-btn text-lg"

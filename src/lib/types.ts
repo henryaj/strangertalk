@@ -41,6 +41,7 @@ export interface AppState {
   followupSurvey: GeneralSurvey | null;
   days: DayData[];
   completedMissionIds: string[];
+  expressMissionIds: string[];
   points: number;
 }
 
